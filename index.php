@@ -12,6 +12,27 @@ $allusers = $db->getAll();
 <html>
 <head>
 <title>Patterns</title>
+<style>
+table {
+    border-collapse: collapse;
+	width: 100%;
+}
+
+table, td, th {
+    border: 1px solid black;
+	text-align: center;
+}
+
+th {
+    height: 50px;
+}
+
+th, td {
+    padding: 5px;
+}
+
+tr:hover {background-color:#f5f5f5;}
+</style>
 </head>
 
 <body>
@@ -35,19 +56,22 @@ $allusers = $db->getAll();
 	</table>
 	</br>
 	<p>Add new user</p>
-	<form action="add.php" method="post" name="add_form">
+	<form action="newuser.php" method="post" name="add_form">
 		<label>Name</label>
-        <input type="text" name="name">
+        <input type="text" placeholder="Ex. Vlad Sevciuc" name="name">
+		<span>*</span>
 		</br></br>
         <label>Email</label>
-        <input type="text" name="email">
+        <input type="email" placeholder="email@email.com" name="email">
+		<span>*</span>
 		</br></br>
 		<select name="method">
 			<option value="database">database</option>
 			<option value="file">file</option>
 		</select>
 		</br></br>
-		<input type="submit" name="Submit" value="Add">
+		<input type="submit" name="addButton" value="Add">
+		<input type="submit" name="registerButton" value="Register">
     </form>
 </body>
 

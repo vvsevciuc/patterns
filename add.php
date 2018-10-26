@@ -11,19 +11,21 @@ interface saveStrategy
 
 class saveInDatabase implements saveStrategy
 {
-    private $ccNum      = '';
-    private $ccType     = '';
-    private $cvvNum     = '';
-    private $ccExpMonth = '';
-    private $ccExpYear  = '';
 
     public function save($params = '')
     {		
 		$db = new Database();
 		
+		if (empty($_POST["name"])) {
+			echo "Name is required";
+			die();
+		}
+
+		$email = test_input($_POST["email"]);
+		
 		$data = [
-			'name' => $_POST['name'],
-			'email' => $_POST['email'],
+			'name' => $name,
+			'email' => $email,
 		]; 
 
         $insert = $db->insertUser($data);
@@ -43,7 +45,7 @@ class saveInFile implements saveStrategy
     {
 		$fileName = $_POST['name'] . '.txt';
 		$txt = $_POST['name'] . ', ' . $_POST['email'] . ', method is ' . $_POST['method'];
-        $myfile = fopen($fileName, "w") or die("Unable to open file!");
+        $myfile = fopen('public/' . $fileName, "w") or die("Unable to open file!");
 		fwrite($myfile, $txt);
 		fclose($myfile);
 		echo "<br>Check file";
@@ -83,9 +85,14 @@ class Strategy
         $saveGateway->save($this->params);
     }
 }
-/**
- * Client usage
- */
+
+function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
 $saveGateway = new SaveGateway();
 
 $cart = new Strategy($_POST['method']);

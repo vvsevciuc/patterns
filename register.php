@@ -53,7 +53,28 @@ class UserRegisterAdapter {
 	}
 }
 
-$search = new UserRegister("Alexandru Macovei", "vvsevciuc@gmail.com");
+function test_input($data) {
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+
+if (empty($_POST["name"])) {
+	echo "Name is required";
+	die();
+	} else {
+		$name = test_input($_POST["name"]);
+		if (str_word_count($name, 0) <= 1) {
+			echo "Requires first and last name"; 
+			die();
+		}
+}
+
+
+$email = test_input($_POST["email"]);
+
+$search = new UserRegister($name, $email);
 $searchAdapter = new UserRegisterAdapter($search);
 echo $searchAdapter->register();
 

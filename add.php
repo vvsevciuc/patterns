@@ -20,7 +20,8 @@ class saveInDatabase implements saveStrategy
 			echo "Name is required";
 			die();
 		}
-
+		
+		$name = test_input($_POST["name"]);
 		$email = test_input($_POST["email"]);
 		
 		$data = [
@@ -54,7 +55,6 @@ class saveInFile implements saveStrategy
 
 class SaveGateway
 {
-
     public function save($params)
     {
         if ($params == 'database') {
@@ -64,7 +64,7 @@ class SaveGateway
         }
         $saveMethod->save($params);
     }
-}
+}		
 
 class Strategy
 {

@@ -14,7 +14,7 @@ class UserRegister {
 		$content = 	'first name is ' . $firstName . 
 					', last name is ' . $lastName . 
 					' and email: ' . $email;
-		if (file_put_contents($fileName, json_encode($content))){
+		if (file_put_contents('public/' . $fileName, json_encode($content))){
 			return 'success';
 		}
 		return 'failed';
@@ -66,8 +66,8 @@ if (empty($_POST["name"])) {
 	} else {
 		$name = test_input($_POST["name"]);
 		if (str_word_count($name, 0) <= 1) {
-			echo "Requires first and last name"; 
-			die();
+			header("Location: index.php?err=1");
+            die();
 		}
 }
 

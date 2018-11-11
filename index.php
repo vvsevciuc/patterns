@@ -12,8 +12,8 @@ $allusers = $db->getAll();
 <!DOCTYPE html>
 <html>
 <head>
-<title>Patterns</title>
-<style>
+    <title>Patterns</title>
+    <style>
 table {
     border-collapse: collapse;
 	width: 100%;
@@ -35,7 +35,7 @@ th, td {
 tr:hover {background-color:#f5f5f5;}
 
 div.wrapper {
-    width:600px;
+    width:1200px;
 }
 div.left_block {
     float:left;
@@ -47,7 +47,6 @@ div.right_block {
 }
 </style>
 </head>
-
 <body>
 	<table>
 		<tr>
@@ -87,11 +86,12 @@ div.right_block {
                     <option value="file">file</option>
                 </select>
                 </br></br>
-                <input type="submit" name="addButton" value="Add">
-                <input type="submit" name="registerButton" value="Register">
+                <input type="submit" name="addButton" value="Strategy">
+                <input type="submit" name="registerButton" value="Adapter">
             </form>
         </div>
         <div class="right_block">
+            <p>Decorator pattern</p>
             <form action="decorator.php" method="post" name="showSalary_form">
                 <label>Name</label>
                 <input type="text" required placeholder="Ex. Vlad Sevciuc" name="name"><br>
@@ -100,6 +100,20 @@ div.right_block {
                 <input type="checkbox" name="plusOneHourSalary" value="plusOneHourSalary">Worked plus one hour<br>
                 </br>
                 <input type="submit" name="showSalary" value="Show">
+            </form>
+        </div>
+        <div class="right_block">
+            <p>Facade pattern</p>
+            <p>to buy this product press button below</p>
+            <form action="facade.php" method="post" name="">
+                <input type="submit" name="" value="Purchase">
+            </form>
+        </div>
+        <div class="right_block">
+            <p>Composite pattern</p>
+            <p>Calculate employees salary from database</p>
+            <form action="composite.php" method="post" name="">
+                <input type="submit" name="showSalary" value="Calculate">
             </form>
         </div>
     </div>

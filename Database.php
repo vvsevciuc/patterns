@@ -10,6 +10,16 @@ Class Database {
 		$result = $this->instance->query('Select * from main');
 		return $result->fetchAll(PDO::FETCH_ASSOC);
 	}
+    
+    public function getDesignerEmployees(){
+		$result = $this->instance->query('Select * from users where job="Designer"');
+		return $result->fetchAll(PDO::FETCH_ASSOC);
+	}
+    
+    public function getDeveloperEmployees(){
+		$result = $this->instance->query('Select * from users where job="Developer"');
+		return $result->fetchAll(PDO::FETCH_ASSOC);
+	}
 	
 	public function getOneUser($id){
 		$sql = $this->instance->query("Select * from main where main.id = $id");
